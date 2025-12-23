@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinAR</title>
+</head>
+<body>
+    <a-scene mindar-image="imageTargetSrc: ./targets.mind" vr-mode-ui="enabled:false" device-orientation-permission-ui="enabled:false">
+        <a-assets>
+            <!-- 共享模型 -->
+            <a-asset-item id="shared-model" src="./Share/untitled.glb"></a-asset-item>
+            <!-- 其他独立模型 -->
+            <a-asset-item id="model-1" src="./independent/model1.glb"></a-asset-item>
+            <a-asset-item id="model-2" src="./independent/model2.glb"></a-asset-item>
+            <!-- 可以添加更多模型 -->
+        </a-assets>
+        
+        <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
+        
+        <!-- 方案1：多个目标共享同一模型 -->
+        <!-- 目标0：显示共享模型 -->
+        <a-entity mindar-image-target="targetIndex:0">
+            <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#shared-model"></a-gltf-model>
+        </a-entity>
+        
+        <!-- 目标1：也显示共享模型 -->
+        <a-entity mindar-image-target="targetIndex:1">
+            <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#shared-model"></a-gltf-model>
+        </a-entity>
+        
+        <!-- 方案2：不同目标显示不同模型 -->
+        <!-- 目标2：显示model1 -->
+        <a-entity mindar-image-target="targetIndex:2">
+            <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#model-1"></a-gltf-model>
+        </a-entity>
+        
+        <!-- 目标3：显示model2 -->
+        <a-entity mindar-image-target="targetIndex:3">
+            <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#model-2"></a-gltf-model>
+        </a-entity>
+         <a-entity mindar-image-target="targetIndex:4">
+            <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#model-2"></a-gltf-model>
+        </a-entity>
+        
+        <!-- 可以继续添加更多目标 -->
+        
+    </a-scene>
+</body>
+</html>
